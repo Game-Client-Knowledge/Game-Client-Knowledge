@@ -5,6 +5,7 @@
 | 主题 | 内容 | 入口 |
 |---|---|---|
 | ECS 系统 | Entity Component System 的原理、结构、流程与实践 | [开始阅读](./ecs-system/README.md) |
+| Knowledge Architect Skill | 系统性知识回复、Markdown 信息架构与全库重编排工作流 | [查看设计](./knowledge-architect-skill/README.md) |
 
 ## 2. 文档组织规范
 
@@ -27,4 +28,3 @@ docs/
 4. 每个文件只聚焦一个主题。
 5. 主题首页维护阅读顺序和文件链接。
 6. 明确区分事实、设计建议、假设和适用边界。
-
