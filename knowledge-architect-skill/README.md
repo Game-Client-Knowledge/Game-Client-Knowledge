@@ -5,7 +5,7 @@
 `knowledge-architect` 用于把复杂问题转化为两个相互配合的交付物：
 
 1. 对话中给出简洁、高信号的结论。
-2. 在 `docs/` 下维护系统化、分层、可索引的 Markdown 知识库。
+2. 在仓库根目录维护系统化、分层、可索引的 Markdown 知识库。
 
 它适用于：
 
@@ -34,7 +34,7 @@
 
 每次完成内容编写后，Skill 会重新审视：
 
-- `docs/README.md` 是否覆盖全部主题。
+- 根目录 `README.md` 是否覆盖全部主题。
 - 每个主题是否存在 `README.md`。
 - 阅读顺序是否符合知识前置关系。
 - 是否存在重复解释或相互竞争的标题。
@@ -47,8 +47,10 @@
 
 ## 4. Skill 结构
 
+> 说明：本文档是 `knowledge-architect` Skill 的设计文档。Skill 的实际文件不存放于本仓库，以下是其规划结构。
+
 ```text
-.trae/skills/knowledge-architect/
+knowledge-architect/
 ├── SKILL.md
 ├── references/
 │   ├── workflow.md
@@ -80,10 +82,10 @@
 
 ## 5. 审计命令
 
-在项目根目录执行：
+在设计结构中，审计脚本规划在 `knowledge-architect/scripts/audit_docs.py`，在仓库根目录执行：
 
 ```bash
-python3 .trae/skills/knowledge-architect/scripts/audit_docs.py docs
+python3 knowledge-architect/scripts/audit_docs.py docs
 ```
 
 脚本会检查：
@@ -93,7 +95,7 @@ python3 .trae/skills/knowledge-architect/scripts/audit_docs.py docs
 - 代码围栏完整闭合。
 - 相对链接有效。
 - 一级主题目录包含 `README.md`。
-- 每篇文档都可以从 `docs/README.md` 到达。
+- 每篇文档都可以从根目录 `README.md` 到达。
 - 文档是否缺少入站链接。
 
 脚本负责确定性机械检查；内容是否重复、章节是否应该拆分等语义问题仍由全库重编排步骤判断。
@@ -113,7 +115,7 @@ Skill 采用原创实现，并借鉴以下公开实践：
 
 ## 7. 验证结果
 
-当前已完成：
+设计验证阶段已完成：
 
 ```text
 Skill frontmatter 校验
@@ -131,5 +133,5 @@ Errors: 0
 Warnings: 0
 ```
 
-加入本文档后需要再次运行审计，以验证新的主题索引关系。
+加入本文档后应再次运行审计，以验证新的主题索引关系。
 
