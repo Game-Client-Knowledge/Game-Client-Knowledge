@@ -5,6 +5,7 @@
 | 主题 | 内容 | 入口 |
 |---|---|---|
 | ECS 系统 | Entity Component System 的原理、结构、流程与实践 | [开始阅读](./ecs-system/README.md) |
+| 游戏客户端面试 | 客户端基础、引擎、渲染、网络、性能和项目设计知识分类 | [查看分类](./game-client-interview/README.md) |
 | Knowledge Architect Skill | 系统性知识回复、Markdown 信息架构与全库重编排工作流 | [查看设计](./knowledge-architect-skill/README.md) |
 
 ## 2. 文档组织规范
