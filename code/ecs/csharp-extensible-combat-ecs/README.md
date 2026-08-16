@@ -160,5 +160,4 @@ AttackSystem
 - Scheduler 是显式单线程顺序。
 - Spawn 时逐个 Add 会产生多次迁移。
 
-[返回 ECS 示例目录](../README.md)
-
+[在代码阅读器中打开工程](/code/workspace/?project=csharp-extensible-combat-ecs)

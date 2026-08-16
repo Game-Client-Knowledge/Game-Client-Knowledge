@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "csharp-extensible-combat-ecs",
+  "title": "C# 高扩展战斗 ECS",
+  "description": "Archetype、Chunk、SoA、Query Cache 与战斗系统的可运行教学工程。",
+  "language": "csharp",
+  "entry": "src/ExtensibleCombatEcs/Program.cs",
+  "readme": "README.md",
+  "includeExtensions": [
+    ".cs",
+    ".csproj",
+    ".sln",
+    ".md",
+    ".json"
+  ],
+  "exclude": [
+    "bin",
+    "obj",
+    ".git",
+    ".vs"
+  ],
+  "readingOrder": [
+    "src/ExtensibleCombatEcs/Game/Components.cs",
+    "src/ExtensibleCombatEcs/Game/DemoBootstrap.cs",
+    "src/ExtensibleCombatEcs/Systems/ControlSystems.cs",
+    "src/ExtensibleCombatEcs/Systems/BuffAndMovementSystems.cs",
+    "src/ExtensibleCombatEcs/Systems/CombatSystems.cs",
+    "src/ExtensibleCombatEcs/Ecs/World.cs",
+    "src/ExtensibleCombatEcs/Ecs/Chunk.cs"
+  ]
+}

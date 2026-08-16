@@ -569,10 +569,11 @@ SurfaceRules
 
 ## 13. 工程位置
 
-[打开 C# 可运行示例](../../examples/ecs/csharp-extensible-combat-ecs/README.md)。
+[打开 C# 可运行工程](../../code/ecs/csharp-extensible-combat-ecs/README.md)，
+或直接进入[代码阅读器](/code/workspace/?project=csharp-extensible-combat-ecs)。
 
 ```text
-examples/ecs/csharp-extensible-combat-ecs/
+code/ecs/csharp-extensible-combat-ecs/
 ├── README.md
 ├── ExtensibleCombatEcs.sln
 └── src/ExtensibleCombatEcs/
@@ -621,4 +622,3 @@ Self Tests：全部通过
 ```
 
 [上一章：哈希查询与分支预测](./09-hash-and-branch-performance.md) | [返回目录](./README.md)
-
