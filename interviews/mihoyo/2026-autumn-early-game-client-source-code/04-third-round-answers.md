@@ -2,7 +2,7 @@
 
 ## 1. 使用说明
 
-本文按[三面原题](./三面.md)的顺序回答。
+本文按[三面原题](./03-third-round.md)的顺序回答。
 
 回答目标不是只给定义，而是覆盖：
 
@@ -1344,8 +1344,8 @@ Unity 物理
 
 ## 7. 相关专题
 
-- [C++ 基础知识](../../../cpp-fundamentals/README.md)
-- [游戏客户端八股分类](../../../game-client-interview/01-knowledge-map.md)
-- [ECS 高性能存储设计](../../../ecs-system/07-high-performance-storage.md)
+- [C++ 基础知识](../../../knowledge/cpp/README.md)
+- [游戏客户端八股分类](../../../knowledge/interview-roadmap/01-knowledge-map.md)
+- [ECS 高性能存储设计](../../../knowledge/ecs/07-high-performance-storage.md)
 
-[返回本轮题目](./三面.md)
+[返回本轮题目](./03-third-round.md)

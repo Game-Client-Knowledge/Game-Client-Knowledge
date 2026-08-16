@@ -23,5 +23,4 @@ c++ -std=c++17 -Wall -Wextra -Wpedantic main.cpp -o third-round-algorithms
 All third-round algorithm tests passed.
 ```
 
-[返回三面参考答案](../../三面-参考答案.md)
-
+[返回三面参考答案](../../../interviews/mihoyo/2026-autumn-early-game-client-source-code/04-third-round-answers.md)

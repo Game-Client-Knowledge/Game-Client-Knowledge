@@ -100,7 +100,7 @@ C++
    查看各类别核心知识、典型问题和岗位优先级。
 2. [操作系统、内存与并发综合模拟题](./02-os-memory-concurrency-mock-interview.md)
    通过大规模战斗卡顿和并发故障场景完成系统性模拟面试。
-3. [ECS 系统专题](../ecs-system/README.md)
+3. [ECS 系统专题](../ecs/README.md)
    深入学习数据导向、组件存储、调度和缓存优化。
-4. [游戏客户端真实面经](../experience/README.md)
+4. [游戏客户端真实面经](../../interviews/README.md)
    按公司与批次进行模拟作答和参考答案复盘。

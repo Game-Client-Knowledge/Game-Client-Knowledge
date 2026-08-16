@@ -1,60 +1,26 @@
-# 文档中心
+# Game Client Knowledge
 
-## 1. 主题目录
+面向游戏客户端开发与面试准备的开放知识库。本仓库只保存 Markdown、
+图片和示例源码；展示网站位于独立的 `Game-Client-Knowledge-Web` 仓库。
 
-| 主题 | 内容 | 入口 |
-|---|---|---|
-| ECS 系统 | Entity Component System 的原理、结构、流程与实践 | [开始阅读](./ecs-system/README.md) |
-| 游戏客户端面试 | 客户端基础、引擎、渲染、网络、性能和项目设计知识分类 | [查看分类](./game-client-interview/README.md) |
-| C++ 基础知识 | 多重继承与 mix-in、RAII、分配器、模板特征，及 C++11/14/17 新特性 | [开始阅读](./cpp-fundamentals/README.md) |
-| 游戏客户端面经 | 按公司和批次整理真实面试题及系统化参考答案 | [查看面经](./experience/README.md) |
-| Knowledge Architect Skill | 系统性知识回复、Markdown 信息架构与全库重编排工作流 | [查看设计](./knowledge-architect-skill/README.md) |
+## 内容目录
 
-## 2. 文档组织规范
+| 目录 | 内容 |
+|---|---|
+| [`knowledge/`](./knowledge/README.md) | 八股、语言基础、引擎原理和专题知识 |
+| [`interviews/`](./interviews/README.md) | 按公司、批次和岗位整理的真实面经 |
+| [`examples/`](./examples/README.md) | 与知识点或面经配套的可运行代码 |
 
-后续主题统一采用以下结构：
+## 最简贡献方式
 
-```text
-<topic>/
-├── README.md            # 范围说明、摘要和阅读导航
-├── 01-<section>.md      # 基础概念
-├── 02-<section>.md      # 核心机制
-├── ...                  # 实践、示例或扩展内容
-└── example/             # 示例程序目录
-    └── <知识点名称>/    # 示例程序文件夹以知识点命名
-```
+不需要登记导航、修改网站代码或编写配置文件。
 
-内容编写遵循以下规则：
+1. 在对应内容类型下创建语义清晰的目录。
+2. 添加一个带一级标题的 `README.md`。
+3. 需要拆章时继续添加 `01-topic.md`、`02-topic.md` 等文件。
+4. 使用相对路径引用仓库内的其他文档或资源。
 
-1. 先给结论和适用范围，再解释原理。
-2. 使用分级标题拆分概念，避免大段连续文字。
-3. 复杂关系优先使用表格、流程图或代码示例。
-4. 每个文件只聚焦一个主题。
-5. 主题首页维护阅读顺序和文件链接。
-6. 明确区分事实、设计建议、假设和适用边界。
+网站在构建时递归扫描目录，以 Markdown 的第一个一级标题作为名称，以
+文件名前缀作为默认顺序，并自动生成导航、上下篇和全文搜索索引。
 
-## 3. 提交规范
-
-提交信息使用中文，格式为：
-
-```text
-<模块>: <提交内容总结>
-```
-
-- 模块：本次修改对应的主题目录名，如 `ecs-system`、`game-client-interview`、`knowledge-architect-skill`；仓库级修改使用 `docs`。
-- 提交内容总结：一句话概括本次改动内容。
-
-示例：
-
-```text
-ecs-system: 新增组件存储与查询实现章节
-game-client-interview: 补充网络同步模块面试题
-```
-
-每次提交需在对应模块的 `README.md` 中添加或更新本次涉及文档的目录条目。
-
-## 4. 示例程序规范
-
-- 示例程序统一放在对应主题目录下的 `example/` 目录中。
-- 示例程序文件夹以其对应的知识点为名称，如 `example/generation-entity-handle/`。
-- 每个示例包内建议包含源码与必要说明（README 或注释）。
+完整约定参见 [CONTRIBUTING.md](./CONTRIBUTING.md)。

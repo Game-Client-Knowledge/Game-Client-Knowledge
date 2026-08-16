@@ -300,7 +300,7 @@
 - MVC 和 MVVM 的职责边界有什么不同，数据绑定如何避免 UI 与业务互相依赖？
 - 工厂模式适合解决哪些创建逻辑，如何避免工厂本身变成巨型分支？
 
-ECS 的详细实现参见[ECS 系统专题](../ecs-system/README.md)。
+ECS 的详细实现参见[ECS 系统专题](../ecs/README.md)。
 
 ### 7.3 资源与场景
 
@@ -502,7 +502,7 @@ ECS 的详细实现参见[ECS 系统专题](../ecs-system/README.md)。
 
 - 类似 AssetBundle 的资源缓存或引用设计中，如何定位内存泄漏？
 
-性能原理可继续阅读[高性能 ECS 存储设计](../ecs-system/07-high-performance-storage.md)和[哈希查询与分支预测](../ecs-system/09-hash-and-branch-performance.md)。
+性能原理可继续阅读[高性能 ECS 存储设计](../ecs/07-high-performance-storage.md)和[哈希查询与分支预测](../ecs/09-hash-and-branch-performance.md)。
 
 ## 12. Unity、Unreal 与平台专项
 

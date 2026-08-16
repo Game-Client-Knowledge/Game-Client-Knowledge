@@ -2,15 +2,15 @@
 
 ## 1. 原始面经
 
-1. [一面](./一面.md)
-2. [二面](./二面.md)
-3. [三面](./三面.md)
+1. [一面](./01-first-round.md)
+2. [二面](./02-second-round.md)
+3. [三面](./03-third-round.md)
 
 ## 2. 参考答案
 
-1. [三面参考答案](./三面-参考答案.md)
+1. [三面参考答案](./04-third-round-answers.md)
    覆盖补码、C++ 值类别与资源管理、二叉树算法、Unity 物理和多人同步。
-2. [三面算法可运行示例](./example/third-round-algorithms/README.md)
+2. [三面算法可运行示例](../../../examples/algorithms/mihoyo-third-round/README.md)
    编译验证 BST 序列化和最大全 1 矩形实现。
 
 ## 3. 使用说明
