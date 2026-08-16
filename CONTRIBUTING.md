@@ -18,6 +18,51 @@ knowledge/
 新增知识体系时，只需在 `knowledge/` 下创建主题文件夹并添加 Markdown。
 `README.md` 用于说明范围和推荐阅读顺序；内容很短时也可以只保留该文件。
 
+### 2.1 在已有专题下新增子专题
+
+例如，在 C++ 专题下新增“多态”专题，推荐结构为：
+
+```text
+knowledge/
+└── cpp/
+    ├── README.md
+    ├── 01-cpp98.md
+    └── polymorphism/
+        ├── README.md
+        ├── 01-runtime-polymorphism.md
+        ├── 02-vtable-and-dispatch.md
+        └── 03-static-polymorphism.md
+```
+
+其中：
+
+- `polymorphism/README.md` 是子专题入口，一级标题写 `# C++ 多态`。
+- 只有一篇内容时，可以只创建 `README.md`。
+- 内容较多时，按阅读顺序添加 `01-`、`02-` 等章节文件。
+- 目录和文件名使用小写 ASCII 与连字符，中文展示名称写在 Markdown 标题中。
+- 建议在父专题 `knowledge/cpp/README.md` 中增加子专题链接，方便直接在仓库中阅读。
+
+网站会自动生成以下页面，不需要修改网站配置：
+
+```text
+/knowledge/cpp/polymorphism/
+/knowledge/cpp/polymorphism/01-runtime-polymorphism/
+/knowledge/cpp/polymorphism/02-vtable-and-dispatch/
+/knowledge/cpp/polymorphism/03-static-polymorphism/
+```
+
+若需要配套可运行代码，不要把完整工程放在知识文档目录中。代码统一放在：
+
+```text
+examples/
+└── cpp/
+    └── polymorphism/
+        ├── README.md
+        └── main.cpp
+```
+
+然后在 `knowledge/cpp/polymorphism/README.md` 中使用相对链接引用示例。
+
 ## 3. 面经
 
 ```text
