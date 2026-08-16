@@ -46,6 +46,10 @@ ECS 不通过庞大的对象继承树描述角色，而是通过组件组合描�
    分析输入驱动剪枝、串行 System 调度的局限，并给出静态 DAG、运行条件和全局任务池方案。
 9. [哈希查询与分支预测](./09-hash-and-branch-performance.md)
    解释连续分配与连续访问的区别，以及哈希、Cache Miss、分支预测和 SIMD 的关系。
+10. [C# 高扩展战斗 ECS 示例架构](./10-csharp-extensible-demo-architecture.md)
+    设计 Player、多类 Enemy、Teammate、Object、Buff、移动和攻击的可扩展逻辑层。
+11. [C# 可运行示例工程](../../examples/ecs/csharp-extensible-combat-ecs/README.md)
+    使用 Archetype、Chunk、SoA、Intent 和事件管线实现完整示范。
 
 ## 4. 知识结构
 
