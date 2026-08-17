@@ -1345,7 +1345,7 @@ Unity 物理
 ## 7. 相关专题
 
 - [C++ 基础知识](../../../knowledge/cpp/README.md)
-- [游戏客户端八股分类](../../../knowledge/interview-roadmap/01-knowledge-map.md)
+- [游戏客户端面试总知识地图](../../../knowledge/interview-roadmap/01-knowledge-map.md)
 - [ECS 高性能存储设计](../../../knowledge/ecs/07-high-performance-storage.md)
 
 [返回本轮题目](./03-third-round.md)
