@@ -18,22 +18,27 @@
 
 ## 2. 重新划分后的层级
 
-原来的十二类知识不再平铺在一篇长文中，而是归入四个可以独立学习的子模块：
+原来的十二类知识不再平铺在一篇长文中，而是归入五个可以独立学习的子模块：
 
 ```mermaid
 flowchart TD
     Root[游戏客户端面试知识体系]
     Root --> Foundation[一、计算机基础底座]
     Root --> Client[二、引擎与客户端核心]
-    Root --> Rendering[三、图形渲染专项]
-    Root --> Engineering[四、工程实践与项目表达]
+    Root --> Unity[三、Unity 引擎基础]
+    Root --> Rendering[四、图形渲染专项]
+    Root --> Engineering[五、工程实践与项目表达]
 
     Foundation --> F1[语言与运行时]
     Foundation --> F2[算法、系统、网络与数学]
 
     Client --> C1[主循环、资源与架构]
     Client --> C2[物理、动画与网络同步]
-    Client --> C3[Unity、Unreal 与平台]
+    Client --> C3[Unreal 与平台通识]
+
+    Unity --> U1[Scene、GameObject 与 Component]
+    Unity --> U2[生命周期、资源、物理与移动]
+    Unity --> U3[渲染、Shader 与工程实践]
 
     Rendering --> R1[基本概念与坐标空间]
     Rendering --> R2[CPU 提交与 GPU 流水线]
@@ -47,6 +52,7 @@ flowchart TD
 |---|---|---|
 | L0 基础底座 | 代码为何这样运行，数据为何这样存取 | [计算机基础底座](./foundations/README.md) |
 | L1 客户端核心 | 一帧游戏如何更新，系统如何组织 | [引擎与客户端核心](./engine-client/README.md) |
+| L2 引擎专项 | Unity 对象、生命周期和常用系统如何协作 | [Unity 引擎基础](./unity-engine/README.md) |
 | L2 方向专项 | 画面如何从数据变成像素 | [图形渲染专项](./rendering/README.md) |
 | L3 工程与表达 | 如何定位问题，并把项目讲出证据 | [工程实践与项目表达](./engineering/README.md) |
 
@@ -60,6 +66,7 @@ flowchart TD
 主语言
 -> 数据结构、内存与并发
 -> 引擎主循环与资源生命周期
+-> Unity 引擎基础或 Unreal 专项
 -> 游戏数学与渲染流水线概览
 -> 网络同步
 -> 性能分析

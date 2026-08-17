@@ -107,29 +107,16 @@ Root Motion 让动画驱动位移，适合动作与距离强绑定的表现；�
 
 ## 4. Unity 专项
 
-| 优先级 | 核心知识 |
-|---|---|
-| P0 | MonoBehaviour 生命周期、执行顺序 |
-| P0 | Prefab、场景、序列化 |
-| P0 | Coroutine、Invoke、Update |
-| P0 | AssetBundle、Addressables |
-| P0 | Unity GC 与常见分配 |
-| P1 | ScriptableObject、数据配置与资源共享 |
-| P1 | UGUI、Canvas Rebuild、Draw Call |
-| P1 | Animator、Physics、Input System |
-| P1 | Built-in、URP、HDRP、SRP |
-| P1 | Mono、IL2CPP、平台构建 |
-| P2 | Jobs、Burst、Entities |
+Unity 已拆分为独立的 [Unity 引擎基础](../unity-engine/README.md) 子模块，系统覆盖：
 
-典型问题：
+- Scene、GameObject、Component、MonoBehaviour 和 Prefab。
+- PlayerLoop、生命周期、协程、时间与异步。
+- SceneManager、Resources、AssetBundle 与 Addressables。
+- Input System、角色移动、摄像机、Collider、Rigidbody 与 Physics Material。
+- Built-in、URP、HDRP、Render Queue、Sorting Layer 和 Shader。
+- Animator、UGUI、ScriptableObject、序列化、GC、Jobs/Burst 与 IL2CPP。
 
-- `Awake` 和 `Start` 的调用时机有什么区别？
-- `Image` 和 `RawImage` 如何选择？
-- `Physics.Raycast` 大致经历哪些步骤？
-- `ScriptableObject` 相比 Prefab 配置有何取舍？
-- AssetBundle 如何拆分并处理依赖？
-- UI 为什么要拆分多个 Canvas？
-- 摄像机如何检测障碍并避免穿模？
+本页不再维护第二份 Unity 提纲，避免同一知识点在两个目录中各自进化。
 
 ## 5. Unreal 专项
 

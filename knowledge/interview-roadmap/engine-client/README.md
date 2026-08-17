@@ -30,10 +30,12 @@ flowchart LR
 1. [引擎架构与运行时](./01-engine-architecture-and-runtime.md)
    学习主循环、时间、对象组织、消息、资源与场景。
 2. [物理、动画、同步与平台](./02-physics-animation-network-and-platforms.md)
-   学习物理动画管线、游戏网络同步，以及 Unity/Unreal 专项。
-3. [ECS 系统专题](../../ecs/README.md)
+   学习物理动画管线、游戏网络同步，以及 Unreal/平台专项。
+3. [Unity 引擎基础](../unity-engine/README.md)
+   系统学习 GameObject、生命周期、资源、移动、物理、渲染和工程实践。
+4. [ECS 系统专题](../../ecs/README.md)
    深入数据导向存储、系统调度、结构变更与缓存优化。
-4. [图形渲染专项](../rendering/README.md)
+5. [图形渲染专项](../rendering/README.md)
    继续追踪渲染数据如何变成最终屏幕像素。
 
 ## 4. 学习边界

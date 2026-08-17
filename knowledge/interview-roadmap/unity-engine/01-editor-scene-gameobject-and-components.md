@@ -269,7 +269,92 @@ if (target == null)
 这就是常说的 fake null。不要把 Unity 对象销毁和普通 C# 引用设为 `null` 当成
 同一件事。
 
-## 9. Prefab 是什么
+## 9. 组件在引擎里如何组织
+
+下面是帮助理解的概念模型，不承诺等同于某个 Unity 版本的私有内存布局：
+
+```text
+GameObject 原生对象
+├── Instance ID
+├── Active / Tag / Layer / Scene
+└── Component handles
+    ├── Transform 原生组件
+    ├── Renderer 原生组件
+    ├── Collider 原生组件
+    └── MonoBehaviour 原生桥接
+              |
+              v
+        C# script instance
+```
+
+### 9.1 内置组件
+
+Transform、Renderer、Collider、Rigidbody 等核心能力主要由引擎原生层实现，
+C# API 提供托管访问入口：
+
+```csharp
+Renderer renderer = GetComponent<Renderer>();
+renderer.enabled = false;
+```
+
+这次属性设置最终会进入引擎对象。频繁跨越托管/原生边界是否昂贵取决于 API 和
+版本，不能把所有 Unity API 调用一概判成慢，但高频热路径仍应使用 Profiler
+验证。
+
+### 9.2 MonoBehaviour 脚本组件
+
+把脚本挂到 GameObject 时，Scene/Prefab 会保存对 MonoScript 资源的引用和该
+组件的序列化字段。加载时，Unity 根据脚本类型创建对应托管实例，并把它与组件
+身份关联：
+
+```text
+Prefab 中的 script GUID
+-> 定位 MonoScript / C# 类型
+-> 创建组件实例
+-> 反序列化字段
+-> 接入生命周期消息
+```
+
+因此重命名类、移动程序集、删除脚本或改变序列化字段时，可能出现 Missing Script
+或数据迁移问题。文件名、类名和程序集边界应遵循稳定约定。
+
+### 9.3 `AddComponent` 概念过程
+
+```csharp
+Health health = gameObject.AddComponent<Health>();
+```
+
+概念上会经历：
+
+```text
+检查组件类型和约束
+-> 在 GameObject 上创建组件
+-> 建立原生/托管关联
+-> 初始化序列化默认值
+-> 根据对象激活状态进入 Awake / OnEnable 等生命周期
+```
+
+`[RequireComponent]` 可在编辑器添加或 `AddComponent` 时补齐依赖，
+`[DisallowMultipleComponent]` 可限制同类脚本重复挂载。但特性只能保证结构
+底线，不能替代运行时依赖验证和清楚的所有权设计。
+
+### 9.4 生命周期函数为何不用 `override`
+
+常见写法：
+
+```csharp
+private void Update()
+{
+}
+```
+
+它不是重写 `MonoBehaviour.Update` 虚函数。Unity 识别特定名称和签名，并在
+PlayerLoop 对应阶段调用存在这些消息的脚本。拼成 `Updata` 不会编译报错，因为
+那只是一个普通私有方法，但 Unity 也不会调用它。
+
+可以用 IDE 模板、代码分析器和最小运行日志减少此类错误。
+
+## 10. Prefab 是什么
 
 Prefab 是可复用的 GameObject 层级模板：
 
@@ -301,9 +386,9 @@ EnemyBase
 不要把 Variant 当成没有代价的继承系统。层级太深时，Override 来源会变得像
 多人同时批注过的合同，需要点开几层才知道最终值来自哪里。
 
-## 10. 如何实例化 GameObject 到 Scene
+## 11. 如何实例化 GameObject 到 Scene
 
-### 10.1 从 Prefab 实例化
+### 11.1 从 Prefab 实例化
 
 ```csharp
 using UnityEngine;
@@ -346,10 +431,10 @@ GameObject enemy = Instantiate(enemyPrefab);
 SceneManager.MoveGameObjectToScene(enemy, targetScene);
 ```
 
-使用该 API 时需引入 `UnityEngine.SceneManagement`，且目标通常应是根对象或按
-当前版本 API 约束处理。
+使用该 API 时需引入 `UnityEngine.SceneManagement`，并确保传入的是根
+GameObject；有父节点的对象应先调整层级或通过父节点所在 Scene 决定归属。
 
-### 10.2 从空对象开始
+### 11.2 从空对象开始
 
 ```csharp
 GameObject marker = new GameObject("RuntimeMarker");
@@ -360,7 +445,7 @@ marker.AddComponent<MarkerBehaviour>();
 这适合简单运行时对象。复杂对象更适合 Prefab，否则代码会逐项搭组件，慢慢长成
 一份只能由作者本人翻译的装配说明书。
 
-## 11. 销毁与对象池
+## 12. 销毁与对象池
 
 ```csharp
 Destroy(enemy);          // 通常延迟到当前 Update 循环之后处理
@@ -385,15 +470,16 @@ Get -> 激活并重置 -> 使用 -> Release -> 停用并归还
 归还时必须重置速度、计时器、事件订阅和临时状态。对象池如果只负责“藏起来”
 而不负责“洗干净”，下一位使用者会收到上一局留下的惊喜。
 
-## 12. 本章检查
+## 13. 本章检查
 
 1. Project 窗口中的 Prefab 和 Hierarchy 中的实例有什么区别？
 2. GameObject 与 Component 各自负责什么？
 3. 为什么 Transform 不能像普通组件一样移除？
 4. 自定义组件为什么通常继承 MonoBehaviour？
-5. `.meta` 丢失为什么可能让引用断开？
-6. `Destroy` 后 Unity 对象为何可能表现为 null？
-7. `Instantiate` 的对象默认进入哪个 Scene，如何改变？
+5. MonoBehaviour 为什么能接收 `Update`，却不需要写 `override`？
+6. `.meta` 丢失为什么可能让引用断开？
+7. `Destroy` 后 Unity 对象为何可能表现为 null？
+8. `Instantiate` 的对象默认进入哪个 Scene，如何改变？
 
 [返回 Unity 引擎基础](./README.md) |
 [下一章：MonoBehaviour 生命周期与主循环](./02-monobehaviour-lifecycle-and-playerloop.md)
