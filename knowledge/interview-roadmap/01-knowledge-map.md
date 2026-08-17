@@ -37,7 +37,7 @@
 | 物理与动画 | 碰撞、刚体、骨骼、状态机 | [物理、动画、同步与平台](./engine-client/02-physics-animation-network-and-platforms.md) |
 | 游戏网络同步 | 状态同步、帧同步、预测与校正 | [物理、动画、同步与平台](./engine-client/02-physics-animation-network-and-platforms.md) |
 | 性能优化与工程化 | CPU/GPU、资源、稳定性 | [性能优化与工程化](./engineering/01-performance-and-production.md) |
-| Unity、Unreal 与平台专项 | Unity 对象/生命周期/资源/渲染，Unreal 与跨平台 | [Unity 引擎基础](./unity-engine/README.md)；[Unreal 与平台提纲](./engine-client/02-physics-animation-network-and-platforms.md) |
+| Unity、Unreal 与平台专项 | Unity/UE 对象、生命周期、资源、渲染与跨平台 | [Unity 引擎基础](./unity-engine/README.md)；[UE 引擎基础](./unreal-engine/README.md)；[平台提纲](./engine-client/02-physics-animation-network-and-platforms.md) |
 | 项目经历与系统设计 | 项目复盘、架构题、表达方式 | [项目表达与复习策略](./engineering/02-project-design-and-study-strategy.md) |
 
 ## 4. 知识依赖关系
@@ -52,6 +52,9 @@ flowchart LR
     Engine --> Unity[Unity 引擎基础]
     Language --> Unity
     Unity --> Rendering
+    Engine --> UE[UE 引擎基础]
+    Language --> UE
+    UE --> Rendering
     Network[计算机网络] --> Sync[游戏网络同步]
     Engine --> Sync
     Engine --> Performance[性能与工程化]

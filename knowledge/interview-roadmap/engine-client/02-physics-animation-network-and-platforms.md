@@ -120,21 +120,18 @@ Unity 已拆分为独立的 [Unity 引擎基础](../unity-engine/README.md) 子�
 
 ## 5. Unreal 专项
 
-| 优先级 | 核心知识 |
-|---|---|
-| P0 | UObject、Actor、Component |
-| P0 | Gameplay Framework |
-| P0 | UCLASS、UPROPERTY、UFUNCTION 反射 |
-| P0 | UObject GC 与智能指针 |
-| P0 | Delegate、Event、Blueprint/C++ 交互 |
-| P1 | Replication、RPC、Role |
-| P1 | Game/Render/RHI Thread |
-| P1 | Asset Manager、异步加载、Cook |
-| P1 | Gameplay Ability System |
-| P2 | RDG、Mass、Task Graph |
+Unreal 已拆分为独立的 [UE 引擎基础](../unreal-engine/README.md) 子模块，系统覆盖：
 
-回答 Unreal 问题时应区分普通 C++ 对象与 UObject 体系。比如一个裸指针是否需要
-参与 GC 追踪，取决于对象类型、持有方式和反射标记，不是看到星号就统一祈祷。
+- Editor、World、Level、Actor、Component 和 Spawn。
+- UObject、反射、CDO、GC、对象指针与 Actor 生命周期。
+- GameMode、GameState、PlayerController、PlayerState、Pawn 和 Character。
+- Blueprint Graph、Interface、Event Dispatcher 与 C++ 协作。
+- Soft Reference、Asset Manager、World Partition、Data Layer 和 Cook。
+- Enhanced Input、CharacterMovement、Animation Blueprint 和 AI。
+- Chaos、Collision、Replication、RPC 和客户端预测。
+- Material、Render Thread、Nanite、Lumen、UMG、GAS 与 Unreal Insights。
+
+本页不再维护第二份 Unreal 提纲，避免基础模块和速查表对同一概念给出不同边界。
 
 ## 6. 平台工程
 
