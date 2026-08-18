@@ -15,10 +15,9 @@
 
 1. [引擎架构与运行时](./01-engine-architecture-and-runtime.md)：时间、对象、模块、事件、资源与场景。
 2. [物理、动画与平台](./02-physics-animation-network-and-platforms.md)：物理动画协作和平台边界。
-3. [游戏同步模型](../game-synchronization/README.md)：权威状态同步、确定性帧同步、Rollback、预测与延迟补偿。
-4. [游戏防作弊](../game-anti-cheat/README.md)：常见作弊、服务器验证、客户端完整性、行为检测与处置。
-5. 引擎专项：[Unity](../unity-engine/README.md) / [Unreal](../unreal-engine/README.md)。
-6. 深入专题：[ECS](../../ecs/README.md) / [图形渲染](../rendering/README.md)。
+3. [多人游戏](../multiplayer-game/README.md)：拓扑、会话匹配、传输、复制、同步、防作弊和观测。
+4. 引擎专项：[Unity](../unity-engine/README.md) / [Unreal](../unreal-engine/README.md)。
+5. 深入专题：[ECS](../../ecs/README.md) / [图形渲染](../rendering/README.md)。
 
 ## 自检框架
 

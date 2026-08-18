@@ -16,12 +16,13 @@
 | 数据结构/算法 | 容器、图、寻路、空间索引 | [语言与数据结构](./foundations/01-language-runtime-and-data-structures.md) |
 | OS/内存/并发 | 虚拟内存、Cache、锁、任务系统 | [系统、网络与数学](./foundations/02-systems-network-and-math.md) |
 | 通用网络 | TCP/UDP、协议、弱网 | [系统、网络与数学](./foundations/02-systems-network-and-math.md) |
+| 多人游戏架构 | 拓扑、权威、会话、匹配、传输、复制与观测 | [多人游戏](./multiplayer-game/README.md) |
 | 游戏数学 | 矩阵、四元数、几何检测 | [系统、网络与数学](./foundations/02-systems-network-and-math.md) |
 | 引擎架构 | 主循环、对象、资源、场景 | [引擎运行时](./engine-client/01-engine-architecture-and-runtime.md) |
 | 图形渲染 | 坐标、Draw Call、GPU 管线 | [渲染专项](./rendering/README.md) |
 | 物理/动画 | 碰撞、刚体、骨骼、状态机 | [物理、动画与平台](./engine-client/02-physics-animation-network-and-platforms.md) |
-| 游戏同步 | 状态同步、帧同步、Rollback、预测、校正与重连 | [游戏同步模型](./game-synchronization/README.md) |
-| 游戏防作弊 | 威胁模型、权威校验、客户端完整性、行为检测与运营处置 | [游戏防作弊](./game-anti-cheat/README.md) |
+| 游戏同步 | 状态同步、帧同步、Rollback、预测、校正与重连 | [多人游戏：同步模型](./multiplayer-game/game-synchronization/README.md) |
+| 游戏防作弊 | 威胁模型、权威校验、客户端完整性、行为检测与运营处置 | [多人游戏：防作弊](./multiplayer-game/game-anti-cheat/README.md) |
 | 性能/工程 | CPU/GPU、内存、资源、稳定性 | [性能工程](./engineering/01-performance-and-production.md) |
 | 引擎专项 | Unity/UE 对象与工程链 | [Unity](./unity-engine/README.md) / [UE](./unreal-engine/README.md) |
 | 项目/设计 | 项目复盘、系统设计、表达 | [项目表达](./engineering/02-project-design-and-study-strategy.md) |
@@ -48,8 +49,7 @@
 语言/生命周期 + 数据结构 + 内存并发
                  -> 引擎主循环/资源
 数学 -> 渲染        -> 性能
-网络 -> 游戏同步     -> 系统设计
-权威状态 + 风险数据   -> 游戏防作弊
+网络 -> 多人游戏 -> 同步/防作弊 -> 系统设计
 引擎专项 + 项目证据  -> 最终表达
 ```
 

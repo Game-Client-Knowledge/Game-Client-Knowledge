@@ -175,4 +175,4 @@ Reconnect：区域 Keyframe + 增量事件
 6. TCP/UDP 与同步模型为什么是正交关系？
 7. 为 FPS、RTS、格斗和 MMO 各选方案，并说明反例条件。
 
-[上一章：协议与安全](./06-payload-compression-reconnect-and-security.md) | [返回专题](./README.md) | [返回游戏客户端面试路线](../README.md)
+[上一章：协议与安全](./06-payload-compression-reconnect-and-security.md) | [返回专题](./README.md) | [返回多人游戏模块](../README.md) | [返回游戏客户端面试路线](../../README.md)

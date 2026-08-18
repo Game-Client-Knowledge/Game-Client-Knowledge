@@ -27,7 +27,7 @@ Root Motion 让动画驱动位移，适合动作匹配但与碰撞/网络权威�
 
 物理结果直接复制到动画、网络和渲染会形成多写者；更稳妥的是生成权威仿真状态，再由表现层消费快照。
 
-状态同步、确定性帧同步、Rollback，以及预测、插值、延迟补偿和协议数据的完整分析见[游戏同步模型](../game-synchronization/README.md)。
+状态同步、确定性帧同步、Rollback，以及预测、插值、延迟补偿和协议数据的完整分析见[多人游戏：同步模型](../multiplayer-game/game-synchronization/README.md)。
 
 ## 平台工程
 

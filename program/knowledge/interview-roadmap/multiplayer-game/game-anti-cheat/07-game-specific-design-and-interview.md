@@ -232,4 +232,4 @@ Rollback 解决交互延迟，不等于防作弊协议。
 6. 帧同步与状态同步的防作弊重点有什么不同？
 7. 如何衡量防作弊系统真正改善了玩家体验？
 
-[上一章：证据与运营](./06-evidence-enforcement-privacy-and-operations.md) | [返回专题](./README.md) | [返回游戏客户端面试路线](../README.md)
+[上一章：证据与运营](./06-evidence-enforcement-privacy-and-operations.md) | [返回专题](./README.md) | [返回多人游戏模块](../README.md) | [返回游戏客户端面试路线](../../README.md)

@@ -19,8 +19,7 @@
 |---|---|---|
 | [计算机基础](./foundations/README.md) | 生命周期、内存、并发、网络、数学 | 全部 |
 | [引擎与客户端核心](./engine-client/README.md) | 一帧怎样推进，资源和系统怎样协作 | 全部客户端 |
-| [游戏同步模型](./game-synchronization/README.md) | 状态同步、帧同步、Rollback、预测与延迟补偿 | 联机玩法/网络/架构 |
-| [游戏防作弊](./game-anti-cheat/README.md) | 常见作弊、服务器权威、完整性、行为检测与风控运营 | 联机玩法/安全/架构 |
+| [多人游戏](./multiplayer-game/README.md) | 拓扑、会话、匹配、传输、同步、防作弊与运营 | 联机玩法/网络/安全/架构 |
 | [Unity](./unity-engine/README.md) | GameObject、PlayerLoop、资源、渲染与工程 | Unity |
 | [Unreal](./unreal-engine/README.md) | UObject、Gameplay Framework、资源、网络与构建 | UE |
 | [图形渲染](./rendering/README.md) | CPU 提交到 GPU 呈现的完整链路 | 渲染/性能/中高级客户端 |
@@ -30,8 +29,8 @@
 
 ## 岗位路线
 
-- **Unity 玩法**：C# / 数据结构 → PlayerLoop / 生命周期 → 资源与异步 → 物理/渲染概览 → 游戏同步与防作弊 → Profiler 与项目题。
-- **UE 玩法**：C++ / UObject → Gameplay Framework → 资源与 Replication → 游戏同步与防作弊 → Blueprint 边界 → Insights / 构建 → 项目题。
+- **Unity 玩法**：C# / 数据结构 → PlayerLoop / 生命周期 → 资源与异步 → 物理/渲染概览 → 多人游戏 → Profiler 与项目题。
+- **UE 玩法**：C++ / UObject → Gameplay Framework → 资源与 Replication → 多人游戏 → Blueprint 边界 → Insights / 构建 → 项目题。
 - **自研引擎**：C++ / 内存并发 → 主循环 / Job System → 资源管线 → 数学与渲染 → 跨平台与性能。
 - **渲染**：C++ / Cache → 线性代数 → CPU 提交 → GPU 流水线 → Shader / 现代管线 → GPU Capture。
 
