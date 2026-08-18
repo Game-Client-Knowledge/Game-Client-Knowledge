@@ -8,7 +8,7 @@
 
 “会”至少意味着：定义、流程、对比、失效条件、验证方法都能回答。
 
-## 十二类索引
+## 知识领域索引
 
 | 领域 | 高频主题 | 入口 |
 |---|---|---|
@@ -21,6 +21,7 @@
 | 图形渲染 | 坐标、Draw Call、GPU 管线 | [渲染专项](./rendering/README.md) |
 | 物理/动画 | 碰撞、刚体、骨骼、状态机 | [物理、动画与平台](./engine-client/02-physics-animation-network-and-platforms.md) |
 | 游戏同步 | 状态同步、帧同步、Rollback、预测、校正与重连 | [游戏同步模型](./game-synchronization/README.md) |
+| 游戏防作弊 | 威胁模型、权威校验、客户端完整性、行为检测与运营处置 | [游戏防作弊](./game-anti-cheat/README.md) |
 | 性能/工程 | CPU/GPU、内存、资源、稳定性 | [性能工程](./engineering/01-performance-and-production.md) |
 | 引擎专项 | Unity/UE 对象与工程链 | [Unity](./unity-engine/README.md) / [UE](./unreal-engine/README.md) |
 | 项目/设计 | 项目复盘、系统设计、表达 | [项目表达](./engineering/02-project-design-and-study-strategy.md) |
@@ -36,6 +37,7 @@
 | 游戏数学 | P0 | P0 | P0 | P0 |
 | 引擎架构 | P0 | P0 | P0 | P1 |
 | 图形渲染 | P1 | P1 | P1 | P0 |
+| 安全与防作弊 | P1 | P1 | P1 | P2 |
 | 性能与项目 | P0 | P0 | P0 | P0 |
 
 岗位 JD 与个人项目优先于通用表：项目写了资源热更、帧同步或渲染优化，就默认升级为 P0。
@@ -47,6 +49,7 @@
                  -> 引擎主循环/资源
 数学 -> 渲染        -> 性能
 网络 -> 游戏同步     -> 系统设计
+权威状态 + 风险数据   -> 游戏防作弊
 引擎专项 + 项目证据  -> 最终表达
 ```
 
