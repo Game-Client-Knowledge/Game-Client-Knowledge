@@ -8,7 +8,9 @@
 2. 函数模板：类型在编译期确定，调用可以专门化和内联。
 3. `std::variant` + `std::visit`：候选类型在编译期封闭，当前值在运行时选择。
 
-对应原理见 [C++ 多态专题](../../../knowledge/cpp/polymorphism/README.md)。
+相关原理可结合 [C++98/03 的继承与动态多态](../../../knowledge/cpp/01-cpp98.md)、
+[C++11 的函数类型擦除](../../../knowledge/cpp/02-cpp11.md)和
+[C++17 的 `std::variant`](../../../knowledge/cpp/04-cpp17.md)复习。
 
 ## 环境
 

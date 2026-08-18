@@ -22,18 +22,11 @@ flowchart TD
     CPP --> Evolution[标准演进]
 
     Core --> Base[C++98/03 核心基础]
-    Core --> Poly[C++ 多态专题]
     Base --> Inherit[继承与 mix-in]
+    Base --> Runtime[继承与动态多态]
     Base --> RAII[RAII 与拷贝控制]
     Base --> Memory[new/delete 与 allocator]
     Base --> Template[模板与类型特征]
-
-    Poly --> Concept[概念与分类]
-    Poly --> Runtime[动态多态]
-    Poly --> Layout[对象布局与调用链]
-    Poly --> Static[静态多态]
-    Poly --> Alternative[类型擦除与替代方案]
-    Poly --> Tradeoff[工程权衡与陷阱]
 
     Evolution --> C11[C++11]
     Evolution --> C14[C++14]
@@ -44,10 +37,9 @@ flowchart TD
 
 | 顺序 | 模块 | 内容 | 建议 |
 |---|---|---|---|
-| 1 | [C++98/03 核心基础](./01-cpp98.md) | 继承与 mix-in、RAII、拷贝控制、内存管理、模板 | 建立对象与资源的基本模型 |
-| 2 | [C++ 多态专题](./polymorphism/README.md) | 静态/动态多态、虚表与调用链、类型擦除、工程权衡 | 按目录顺序完整阅读 |
+| 1 | [C++98/03 核心基础](./01-cpp98.md) | 继承与动态多态、mix-in、RAII、拷贝控制、内存管理、模板 | 建立对象、分派与资源的基本模型 |
 
-多态被独立成子专题，因为它不只是"虚函数那一页"：模板、重载、CRTP、`std::variant` 和类型擦除都在解决"同一套代码如何面对多种类型"这个问题，只是决策时间与代价不同。
+多态不只包含虚函数：模板和重载在编译期选择实现，虚函数在运行时通过对象的动态类型分派，`std::variant` 适合封闭类型集合，类型擦除则隐藏具体类型并保留统一接口。复习时应比较决策时机、类型集合、内联机会、对象布局与 ABI 成本。
 
 ## 4. 标准演进
 
@@ -65,22 +57,17 @@ C++03 是修订性标准，没有新增主要语言特性，因此与 C++98 合�
 
 ```text
 C++98/03 核心基础
-    -> 多态：概念与分类
-    -> 多态：动态多态
-    -> 多态：对象布局与调用链
     -> C++11
-    -> 多态：静态多态与替代方案
     -> C++14 / C++17
-    -> 多态：工程权衡与陷阱
+    -> 回头比较虚函数、模板、类型擦除与 std::variant
 ```
 
 ### 5.2 面试前快速复习
 
-先读 [多态专题总览](./polymorphism/README.md) 的对照表，再重点阅读：
-
-1. [动态多态：继承、虚函数与抽象接口](./polymorphism/02-dynamic-polymorphism.md)。
-2. [对象布局、虚表与完整调用链](./polymorphism/03-object-layout-and-dispatch.md)。
-3. [工程权衡、性能与常见陷阱](./polymorphism/06-tradeoffs-and-pitfalls.md)。
+1. 阅读 [C++98/03 核心基础](./01-cpp98.md)，复习继承、动态分派、RAII 与模板。
+2. 阅读 [C++11](./02-cpp11.md)，复习 `override`/`final`、Lambda 与 `std::function` 类型擦除。
+3. 阅读 [C++17](./04-cpp17.md)，复习 `std::variant`、`std::any` 与 `if constexpr`。
+4. 比较虚函数、模板、`std::variant` 和类型擦除的适用边界与成本。
 
 ## 6. 掌握标准
 
