@@ -1,150 +1,61 @@
-# 物理、动画、同步与平台
+# 物理、动画、同步与平台速记
 
-## 1. 物理系统
+## 物理
 
-| 优先级 | 核心知识 |
-|---|---|
-| P0 | Collider、Rigidbody、Trigger |
-| P0 | Broad Phase / Narrow Phase |
-| P1 | AABB、OBB、SAT、GJK |
-| P1 | 离散与连续碰撞检测 |
-| P1 | 积分、约束、摩擦和反弹 |
-| P1 | Character Controller |
+一帧物理主线：Broad Phase 生成候选对 → Narrow Phase 求接触 → Solver 迭代约束 → 写回 Transform/事件。
 
-一次碰撞检测不会让所有物体两两精确比较：
+- Static/Kinematic/Dynamic 的所有权不同；不要同时让动画、脚本和物理争写 Transform。
+- Trigger 只报告重叠，Collision 参与响应；Layer/Mask 先减少候选集。
+- 离散检测可能穿透，高速小物体用 sweep/CCD，但成本更高。
+- 固定步、solver iteration、碰撞形状复杂度和活跃刚体数是主要性能杠杆。
+- 回调可能重入或延迟，销毁与容器修改采用命令缓冲。
 
-```text
-Broad Phase
-用 AABB、网格或 BVH 快速找出可能相交的候选对
-        |
-        v
-Narrow Phase
-使用具体形状计算是否接触、接触点和法线
-        |
-        v
-Solver
-根据约束、质量、速度、摩擦和恢复系数求解响应
-```
-
-典型问题：
-
-- 高速子弹为什么会穿透？
-- Trigger 和 Collision 的处理差异是什么？
-- Broad Phase 为什么需要空间加速结构？
-- 近战攻击用碰撞器还是动画关键帧范围检测？
-
-高速物体可能在两个离散时间点分别位于障碍物两侧，从未“采样到”相交状态。
-连续碰撞检测会考虑运动轨迹，但成本也更高，因此通常只给关键高速对象使用。
-
-## 2. 动画系统
-
-| 优先级 | 核心知识 |
-|---|---|
-| P0 | 骨骼、蒙皮、关键帧 |
-| P0 | 动画状态机、Blend Tree |
-| P1 | Root Motion、Animation Event |
-| P1 | IK、动画分层、Avatar Mask |
-| P2 | GPU Skinning、动画压缩 |
-
-动画系统常见数据流：
+## 动画
 
 ```text
-玩法状态
--> 选择状态与动画片段
--> 混合姿势
--> 计算骨骼局部/全局变换
--> 蒙皮得到最终顶点
--> 提交渲染
+状态/参数 -> 状态机或动画图 -> Clip 采样/混合
+-> 骨骼局部姿态 -> 全局姿态 -> 蒙皮 -> 渲染
 ```
 
-Root Motion 让动画驱动位移，适合动作与距离强绑定的表现；代码驱动位移更便于
-玩法、网络和碰撞控制。工程中常按技能类型混合使用，而不是举办一场非黑即白的
-路线之争。
+Root Motion 让动画驱动位移，适合动作匹配但与碰撞/网络权威协调更复杂；代码驱动位移更易控制。Animation Event/Notify 适合表现通知，关键判定不应只依赖某一帧动画回调。
 
-## 3. 游戏网络同步
+动画优化关注可见性裁剪、更新频率、骨骼数、混合层数、IK 和蒙皮位置（CPU/GPU）。
 
-| 优先级 | 核心知识 |
-|---|---|
-| P0 | 服务器权威模型 |
-| P0 | 状态同步与帧同步 |
-| P0 | 快照、插值、外推 |
-| P0 | 客户端预测与服务器校正 |
-| P1 | 延迟补偿、输入缓冲 |
-| P1 | AOI、属性同步、增量同步 |
-| P1 | 确定性、随机种子、浮点差异 |
-| P1 | 断线重连、状态恢复 |
-| P2 | Rollback、Replay、反作弊 |
+## 游戏网络同步
 
-### 3.1 状态同步
+| 方案 | 核心 | 代价 |
+|---|---|---|
+| 状态同步 | 服务端发送权威状态 | 带宽、插值/外推、纠错 |
+| 帧/输入同步 | 广播输入，各端确定性模拟 | 确定性、回滚、掉线追帧 |
+| 客户端预测 | 本地先执行，服务端确认 | reconciliation、状态历史、视觉修正 |
 
-服务器计算权威状态，向客户端发送快照或增量：
+通用技术：sequence/tick、snapshot buffer、插值延迟、interest management、delta compression、可靠/不可靠通道、重连与反作弊。
 
-```text
-客户端输入 -> 服务器仿真 -> 权威状态 -> 客户端插值显示
-```
+客户端永远不权威。表现可预测，资产和最终判定由服务端确认。不要把 TCP/UDP 选择等同于同步模型选择。
 
-优点是客户端不必完全确定性；代价是状态带宽和显示延迟，需要插值、外推与预测。
+## 系统协作
 
-### 3.2 帧同步
+一次角色输入可能经历：采样输入 → 本地预测 → 移动/物理 → 动画参数 → 相机 → 网络发送 → 服务端校正 → 渲染插值。每层需明确模拟时间、表现时间和权威时间。
 
-服务器主要转发按逻辑帧编号组织的输入，各端执行同一套确定性逻辑：
+物理结果直接复制到动画、网络和渲染会形成多写者；更稳妥的是生成权威仿真状态，再由表现层消费快照。
 
-```text
-各端输入 -> 服务器排序确认 -> 广播帧输入 -> 各端执行相同仿真
-```
+## 平台工程
 
-优点是传输输入即可，适合大量确定性状态；代价是必须控制浮点、随机数、执行
-顺序和版本差异，并设计卡帧、预测或回滚策略。
+- 移动端：热/功耗、内存峰值、后台恢复、触控、包体和 GPU 架构。
+- 主机：固定硬件、认证、存储/用户体系、手柄与暂停语义。
+- PC：硬件/驱动组合、窗口/DPI、输入设备、文件权限和 Shader 缓存。
+- AOT 平台：反射、泛型、动态代码与裁剪限制。
 
-典型问题：
+平台抽象应封装能力差异，但不要用最低公分母抹掉性能特性。CI 需覆盖真机、发布配置、资源包、存档升级和弱网。
 
-- 状态同步和帧同步如何选择？
-- 客户端预测为什么会产生回拉？
-- 如何平滑服务器校正？
-- 帧同步为什么要求确定性？
-- 攻击判定依赖动画帧时，弱网如何补偿？
-- 哪些结果必须由服务端权威计算？
+## 高频追问
 
-## 4. Unity 专项
+1. 为什么 Transform 与 Rigidbody 混写会抖动？
+2. Root Motion 如何参与服务器权威移动？
+3. 状态同步如何处理抖动与丢包？
+4. 帧同步为何要求稳定遍历和随机数调用顺序？
+5. 客户端预测发生误差时怎样校正而不突跳？
+6. 大量角色的物理和动画如何分级更新？
+7. 编辑器正常、真机异常时先排查哪些平台差异？
 
-Unity 已拆分为独立的 [Unity 引擎基础](../unity-engine/README.md) 子模块，系统覆盖：
-
-- Scene、GameObject、Component、MonoBehaviour 和 Prefab。
-- PlayerLoop、生命周期、协程、时间与异步。
-- SceneManager、Resources、AssetBundle 与 Addressables。
-- Input System、角色移动、摄像机、Collider、Rigidbody 与 Physics Material。
-- Built-in、URP、HDRP、Render Queue、Sorting Layer 和 Shader。
-- Animator、UGUI、ScriptableObject、序列化、GC、Jobs/Burst 与 IL2CPP。
-
-本页不再维护第二份 Unity 提纲，避免同一知识点在两个目录中各自进化。
-
-## 5. Unreal 专项
-
-Unreal 已拆分为独立的 [UE 引擎基础](../unreal-engine/README.md) 子模块，系统覆盖：
-
-- Editor、World、Level、Actor、Component 和 Spawn。
-- UObject、反射、CDO、GC、对象指针与 Actor 生命周期。
-- GameMode、GameState、PlayerController、PlayerState、Pawn 和 Character。
-- Blueprint Graph、Interface、Event Dispatcher 与 C++ 协作。
-- Soft Reference、Asset Manager、World Partition、Data Layer 和 Cook。
-- Enhanced Input、CharacterMovement、Animation Blueprint 和 AI。
-- Chaos、Collision、Replication、RPC 和客户端预测。
-- Material、Render Thread、Nanite、Lumen、UMG、GAS 与 Unreal Insights。
-
-本页不再维护第二份 Unreal 提纲，避免基础模块和速查表对同一概念给出不同边界。
-
-## 6. 平台工程
-
-| 优先级 | 核心知识 |
-|---|---|
-| P1 | Android/iOS 生命周期 |
-| P1 | 前后台切换、权限、输入设备 |
-| P1 | 文件系统、包体和热更新限制 |
-| P1 | 多分辨率、安全区、本地化 |
-| P2 | 主机认证、跨平台抽象 |
-
-跨平台抽象应隔离能力差异，而不是假装所有平台完全相同。常见做法是定义稳定的
-上层接口，再由平台实现报告支持能力和限制，让调用方可以选择降级路径。
-
-[上一章：引擎架构与运行时](./01-engine-architecture-and-runtime.md) |
-[返回引擎与客户端核心](./README.md)
+[上一章：引擎架构](./01-engine-architecture-and-runtime.md) | [返回模块](./README.md)
