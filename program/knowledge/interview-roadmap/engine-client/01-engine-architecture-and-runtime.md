@@ -60,4 +60,4 @@ worker 只处理声明的数据快照或独占分区，结果通过命令缓冲�
 6. 场景切换时晚到网络/资源回调如何处理？
 7. 何时从 GameObject/Actor 模型转向 ECS 批处理？
 
-[返回模块](./README.md) | [下一章：物理、动画、同步与平台](./02-physics-animation-network-and-platforms.md)
+[返回模块](./README.md) | [下一章：物理、动画与平台](./02-physics-animation-network-and-platforms.md)

@@ -19,8 +19,8 @@
 | 游戏数学 | 矩阵、四元数、几何检测 | [系统、网络与数学](./foundations/02-systems-network-and-math.md) |
 | 引擎架构 | 主循环、对象、资源、场景 | [引擎运行时](./engine-client/01-engine-architecture-and-runtime.md) |
 | 图形渲染 | 坐标、Draw Call、GPU 管线 | [渲染专项](./rendering/README.md) |
-| 物理/动画 | 碰撞、刚体、骨骼、状态机 | [物理动画与同步](./engine-client/02-physics-animation-network-and-platforms.md) |
-| 游戏同步 | 状态/帧同步、预测、校正 | [物理动画与同步](./engine-client/02-physics-animation-network-and-platforms.md) |
+| 物理/动画 | 碰撞、刚体、骨骼、状态机 | [物理、动画与平台](./engine-client/02-physics-animation-network-and-platforms.md) |
+| 游戏同步 | 状态同步、帧同步、Rollback、预测、校正与重连 | [游戏同步模型](./game-synchronization/README.md) |
 | 性能/工程 | CPU/GPU、内存、资源、稳定性 | [性能工程](./engineering/01-performance-and-production.md) |
 | 引擎专项 | Unity/UE 对象与工程链 | [Unity](./unity-engine/README.md) / [UE](./unreal-engine/README.md) |
 | 项目/设计 | 项目复盘、系统设计、表达 | [项目表达](./engineering/02-project-design-and-study-strategy.md) |
